@@ -6,18 +6,20 @@ document.addEventListener("DOMContentLoaded", function() {
 		let pet = new Pet(name);
 		document.getElementById('start-screen').style.display = 'none';
 	}
-
+	function random(from, to) {
+		return Math.ceil(Math.random() * (to - from)) + from;
+	}
 	function Pet(name) {
 		this.name = name;
-		this.hunger = Math.ceil(Math.random() * (100 - 50)) + 50;
-		this.thirst = Math.ceil(Math.random() * (100 - 50)) + 50;
-		this.sadness = Math.ceil(Math.random() * (100 - 50)) + 50;
-		this.tiredness = Math.ceil(Math.random() * (100 - 50)) + 50;
-		this.anger = Math.ceil(Math.random() * (100 - 50)) + 50;
-		this.silliness = Math.ceil(Math.random() * (100 - 50)) + 50;
+		this.hunger = random(50, 100);
+		this.thirst = random(50, 100);
+		this.sadness = random(50, 100);
+		this.tiredness = random(50, 100);
+		this.anger = random(50, 100);
+		this.silliness = random(50, 100);
 		this.dead = false;
 
-		this.func = (context, key) => {
+		this.lifeCycle = (context, key) => {
 			let timer = setInterval(() => {
 				context -= .1
 				
@@ -43,12 +45,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		};
 
 		document.getElementById('name').innerHTML = name;
-		this.func(this.hunger, 'hunger');
-		this.func(this.thirst, 'thirst');
-		this.func(this.sadness, 'sadness');
-		this.func(this.tiredness, 'tiredness');
-		this.func(this.anger, 'anger');
-		this.func(this.silliness, 'silliness');
+		this.lifeCycle(this.hunger, 'hunger');
+		this.lifeCycle(this.thirst, 'thirst');
+		this.lifeCycle(this.sadness, 'sadness');
+		this.lifeCycle(this.tiredness, 'tiredness');
+		this.lifeCycle(this.anger, 'anger');
+		this.lifeCycle(this.silliness, 'silliness');
 	}
 })
 
